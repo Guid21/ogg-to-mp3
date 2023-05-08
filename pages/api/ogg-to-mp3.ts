@@ -7,6 +7,8 @@ import { Readable } from 'stream';
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
+console.log('ttt')
+
 const KEY = 'JTy*G#BY~?s8!%qz3,wQM(2p4DR&vIZnKL6u)F;]`dCAeUPNbW[$Sj7mfh^Xtgxc';
 
 type Data = {
@@ -23,6 +25,7 @@ export default async function handler(
   const hasLink = Boolean(url) && typeof url === 'string';
 
   if (hasLink && isAvailable && isGetMethod) {
+    res.setHeader('Content-Type', 'audio/mpeg')
     axios
       .get(url, { responseType: 'arraybuffer' })
       .then((response) => {
